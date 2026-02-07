@@ -1,0 +1,25 @@
+{
+  "label": "MEET YOUR HOST",
+  "title": {
+    "line1": "Learn from the",
+    "line2": "Best"
+  },
+  "host": {
+    "image": "",
+    "role": "SPEAKER & MENTOR",
+    "name": "Alex Mercer",
+    "description": "A visionary tech leader and keynote speaker who has helped thousands of professionals transform their careers. With over 15 years in the industry, Alex brings a unique blend of practical expertise and inspiring storytelling.",
+    "stats": [
+      { "icon": "people", "value": "50K+", "label": "Students Mentored" },
+      { "icon": "mic", "value": "200+", "label": "Talks Delivered" },
+      { "icon": "book", "value": "15+", "label": "Years Experience" },
+      { "icon": "award", "value": "30+", "label": "Awards Won" }
+    ],
+    "followLabel": "Follow:",
+    "links": [
+      { "label": "LinkedIn", "url": "#" },
+      { "label": "Twitter", "url": "#" },
+      { "label": "YouTube", "url": "#" }
+    ]
+  }
+}

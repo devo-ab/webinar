@@ -70,7 +70,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <motion.p
-          className="text-lg md:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-6"
+          className="text-xl md:text-2xl text-slate-200 font-medium max-w-2xl mx-auto mb-6"
           variants={fadeInUp}
         >
           {data.subheadline}
@@ -78,7 +78,7 @@ export default function Hero() {
 
         {/* Description */}
         <motion.p
-          className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed"
+          className="text-white text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed"
           variants={fadeInUp}
         >
           {data.description}
