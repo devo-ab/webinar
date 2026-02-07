@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import hostData from "../data/host.json";
+import authorImage from "../assets/author.jpg";
 
 interface HostData {
   label: string;
@@ -55,29 +56,11 @@ export default function HostSection() {
         >
           {/* Image */}
           <div className="md:w-2/5 min-h-[300px] md:min-h-[400px] bg-[#f5f3f0]">
-            {data.host.image ? (
-              <img
-                src={data.host.image}
-                alt={data.host.name}
-                className="w-full h-full object-cover object-top"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#f5f3f0] to-[#e8e6e3]">
-                <svg
-                  className="w-24 h-24 text-[#c4c0b8]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-              </div>
-            )}
+            <img
+              src={authorImage}
+              alt={data.host.name}
+              className="w-full h-full object-cover object-top"
+            />
           </div>
 
           {/* Content */}

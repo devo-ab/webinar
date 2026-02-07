@@ -7,8 +7,8 @@
   "host": {
     "image": "",
     "role": "SPEAKER & MENTOR",
-    "name": "Alex Mercer",
-    "description": "A visionary tech leader and keynote speaker who has helped thousands of professionals transform their careers. With over 15 years in the industry, Alex brings a unique blend of practical expertise and inspiring storytelling.",
+    "name": "Michael Guastamacchio",
+    "description": "A tech founder transforming how filmmakers deliver and monetize their work. With over a decade leading MediaZilla, Michael helps video professionals streamline workflows, enhance client experiences, and turn every project into a premium revenue opportunity.",
     "stats": [
       { "icon": "people", "value": "50K+", "label": "Students Mentored" },
       { "icon": "mic", "value": "200+", "label": "Talks Delivered" },

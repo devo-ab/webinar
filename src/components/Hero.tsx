@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import heroData from "../data/hero.json";
+import registerData from "../data/register.json";
 import bannerBg from "../assets/banner-bg.jpg";
 
 const fadeInUp = {
@@ -25,11 +27,37 @@ interface HeroData {
   backgroundImage: string;
 }
 
+interface RegisterFormData {
+  form: {
+    title: string;
+    fields: Record<string, { label: string; placeholder: string; required: boolean }>;
+    roles: string[];
+    submitText: string;
+    securityNote: string;
+  };
+}
+
 export default function Hero() {
   const data = heroData as HeroData;
+  const register = (registerData as RegisterFormData).form;
+  const [formState, setFormState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    business: "",
+    role: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormState((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   return (
-    <section className="hero relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="register" className="hero relative min-h-screen flex items-center justify-center overflow-hidden py-12">
       {/* Theatrical stage background */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1a0f0a] via-[#2d1810] to-[#0d0806]" />
       <div
@@ -45,11 +73,13 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        className="relative z-10 w-full max-w-3xl mx-auto px-6 py-24 text-center"
+        className="relative z-10 w-full max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 lg:gap-12 items-center"
         variants={containerVariants}
         initial="initial"
         animate="animate"
       >
+        {/* Left: Hero content */}
+        <div className="text-center lg:text-left">
         {/* Tag */}
         <motion.div
           className="inline-block px-4 py-1.5 rounded-lg bg-white border-2 border-brand/60 text-[#2a2520] text-sm font-semibold tracking-widest mb-8"
@@ -70,7 +100,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <motion.p
-          className="text-xl md:text-2xl text-slate-200 font-medium max-w-2xl mx-auto mb-6"
+          className="text-xl md:text-2xl text-slate-200 font-medium max-w-2xl mx-auto lg:mx-0 mb-6"
           variants={fadeInUp}
         >
           {data.subheadline}
@@ -78,7 +108,7 @@ export default function Hero() {
 
         {/* Description */}
         <motion.p
-          className="text-white text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed"
+          className="text-white text-sm md:text-base max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
           variants={fadeInUp}
         >
           {data.description}
@@ -86,7 +116,7 @@ export default function Hero() {
 
         {/* Event details */}
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-white text-sm mb-10 px-6 py-4 rounded-xl bg-black/60 backdrop-blur-sm"
+          className="flex flex-wrap items-center justify-center lg:justify-start gap-6 md:gap-10 text-white text-sm mb-8 px-6 py-4 rounded-xl bg-black/60 backdrop-blur-sm inline-flex"
           variants={fadeInUp}
         >
           <span className="flex items-center gap-2">
@@ -123,36 +153,123 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* CTA Button */}
-        <motion.div variants={fadeInUp} className="inline-block">
-          <a
-            href={data.cta.url}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-brand text-white font-semibold text-lg shadow-lg shadow-brand/30 hover:bg-[#9a0e14] transition-colors duration-200 hover:scale-105"
-          >
-            {data.cta.text}
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </a>
-        </motion.div>
-
         {/* Footer */}
         <motion.p
-          className="mt-12 text-slate-500 text-sm"
+          className="text-slate-500 text-sm"
           variants={fadeInUp}
         >
           {data.footer}
         </motion.p>
+        </div>
+
+        {/* Right: Registration form */}
+        <motion.div
+          variants={fadeInUp}
+          className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-xl"
+        >
+          <h3 className="font-serif text-xl md:text-2xl font-bold text-[#2a2520] text-center mb-6">
+            {register.title}
+          </h3>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label htmlFor="hero-firstName" className="block text-xs font-medium text-[#2a2520] mb-1">
+                  {register.fields.firstName.label} {register.fields.firstName.required && "*"}
+                </label>
+                <input
+                  type="text"
+                  id="hero-firstName"
+                  name="firstName"
+                  placeholder={register.fields.firstName.placeholder}
+                  required
+                  value={formState.firstName}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#f5f3f0] text-[#2a2520] placeholder:text-[#8a8580] text-sm focus:outline-none focus:ring-2 focus:ring-brand/50"
+                />
+              </div>
+              <div>
+                <label htmlFor="hero-lastName" className="block text-xs font-medium text-[#2a2520] mb-1">
+                  {register.fields.lastName.label} {register.fields.lastName.required && "*"}
+                </label>
+                <input
+                  type="text"
+                  id="hero-lastName"
+                  name="lastName"
+                  placeholder={register.fields.lastName.placeholder}
+                  required
+                  value={formState.lastName}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2.5 rounded-lg bg-[#f5f3f0] text-[#2a2520] placeholder:text-[#8a8580] text-sm focus:outline-none focus:ring-2 focus:ring-brand/50"
+                />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="hero-email" className="block text-xs font-medium text-[#2a2520] mb-1">
+                {register.fields.email.label} *
+              </label>
+              <input
+                type="email"
+                id="hero-email"
+                name="email"
+                placeholder={register.fields.email.placeholder}
+                required
+                value={formState.email}
+                onChange={handleChange}
+                className="w-full px-3 py-2.5 rounded-lg bg-[#f5f3f0] text-[#2a2520] placeholder:text-[#8a8580] text-sm focus:outline-none focus:ring-2 focus:ring-brand/50"
+              />
+            </div>
+            <div>
+              <label htmlFor="hero-business" className="block text-xs font-medium text-[#2a2520] mb-1">
+                {register.fields.business.label}
+              </label>
+              <input
+                type="text"
+                id="hero-business"
+                name="business"
+                placeholder={register.fields.business.placeholder}
+                value={formState.business}
+                onChange={handleChange}
+                className="w-full px-3 py-2.5 rounded-lg bg-[#f5f3f0] text-[#2a2520] placeholder:text-[#8a8580] text-sm focus:outline-none focus:ring-2 focus:ring-brand/50"
+              />
+            </div>
+            <div>
+              <label htmlFor="hero-role" className="block text-xs font-medium text-[#2a2520] mb-1">
+                {register.fields.role.label} *
+              </label>
+              <select
+                id="hero-role"
+                name="role"
+                required
+                value={formState.role}
+                onChange={handleChange}
+                className="w-full px-3 py-2.5 rounded-lg bg-[#f5f3f0] text-[#2a2520] text-sm focus:outline-none focus:ring-2 focus:ring-brand/50 appearance-none cursor-pointer"
+                style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%235a5550'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 0.5rem center",
+                  backgroundSize: "1rem",
+                  paddingRight: "2rem",
+                }}
+              >
+                <option value="">{register.fields.role.placeholder}</option>
+                {register.roles.map((r) => (
+                  <option key={r} value={r}>{r}</option>
+                ))}
+              </select>
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-lg bg-brand hover:bg-[#9a0e14] text-white font-semibold text-base transition-colors flex items-center justify-center gap-2"
+            >
+              {register.submitText}
+              <span aria-hidden>→</span>
+            </button>
+            <p className="text-center text-xs text-[#5a5550] flex items-center justify-center gap-1">
+              <span aria-hidden>🔒</span>
+              {register.securityNote}
+            </p>
+          </form>
+        </motion.div>
       </motion.div>
     </section>
   );
