@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import footerData from "../data/footer.json";
 import footerLogo from "../assets/footer-logo.webp";
 
@@ -10,7 +11,13 @@ export default function Footer() {
   const data = footerData as FooterData;
 
   return (
-    <footer className="py-10 px-6 bg-black">
+    <motion.footer
+      className="py-10 px-6 bg-black"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="max-w-2xl mx-auto text-center">
         {/* Logo */}
         <div className="flex justify-center mb-6">
@@ -32,6 +39,6 @@ export default function Footer() {
         {/* Copyright */}
         <p className="text-slate-500 text-sm">{data.copyright}</p>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

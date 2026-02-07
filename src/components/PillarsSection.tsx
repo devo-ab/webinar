@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import pillarsData from "../data/pillars.json";
 
 interface Pillar {
@@ -53,15 +54,32 @@ function PillarIcon({ icon }: { icon: string }) {
   }
 }
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const containerVariants = {
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
+
 export default function PillarsSection() {
   const data = pillarsData as PillarsData;
 
   return (
-    <section className="py-12 md:py-16 px-6 bg-[#fafaf9]">
-      <div className="max-w-4xl mx-auto">
+    <motion.section
+      className="py-12 md:py-16 px-6 bg-[#fafaf9]"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={containerVariants}
+    >
+      <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
-          <div className="inline-block px-4 py-1.5 rounded-lg border-2 border-brand/60 text-[#2a2520] text-xs font-semibold tracking-widest mb-6">
+        <motion.div className="text-center mb-10" variants={fadeInUp}>
+          <div className="inline-block px-4 py-1.5 rounded-lg bg-white border-2 border-brand/60 text-[#2a2520] text-xs font-semibold tracking-widest mb-6">
             {data.label}
           </div>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2a2520] leading-tight mb-4">
@@ -72,38 +90,35 @@ export default function PillarsSection() {
           <p className="text-[#4a4540] text-lg max-w-2xl mx-auto leading-relaxed">
             {data.subtitle}
           </p>
-        </div>
+        </motion.div>
 
         {/* Pillar cards */}
-        <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {data.pillars.map((pillar) => (
-            <article
+            <motion.article
               key={pillar.id}
-              className="flex flex-col sm:flex-row gap-6 sm:gap-10 p-6 md:p-8 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow"
+              variants={fadeInUp}
+              className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow"
             >
-              {/* Left: Icon */}
-              <div className="flex flex-col items-center sm:items-start sm:w-40 flex-shrink-0">
-                <div className="relative w-24 h-24 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-brand/20 flex items-center justify-center text-brand">
-                    <PillarIcon icon={pillar.icon} />
-                  </div>
+              {/* Icon */}
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center text-brand">
+                  <PillarIcon icon={pillar.icon} />
                 </div>
               </div>
 
-              {/* Right: Content */}
-              <div className="flex-1 min-w-0">
-                <h3 className="font-serif text-2xl font-bold text-[#2a2520] mb-2">
-                  {pillar.title}
-                </h3>
-                <p className="text-brand font-medium mb-3">{pillar.tagline}</p>
-                <p className="text-[#4a4540] leading-relaxed">
-                  {pillar.description}
-                </p>
-              </div>
-            </article>
+              {/* Content */}
+              <h3 className="font-serif text-xl font-bold text-[#2a2520] mb-2">
+                {pillar.title}
+              </h3>
+              <p className="text-brand font-medium text-sm mb-2">{pillar.tagline}</p>
+              <p className="text-[#4a4540] text-sm leading-relaxed">
+                {pillar.description}
+              </p>
+            </motion.article>
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

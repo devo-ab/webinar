@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import deepDiveData from "../data/deep-dive.json";
 
 interface DeepDiveItem {
@@ -23,27 +24,45 @@ const imagePlaceholders: Record<string, string> = {
   "04": "linear-gradient(135deg, #0d0d0d 0%, #1a0a0a 50%, #B91118 100%)",
 };
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const containerVariants = {
+  visible: {
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
+
 export default function DeepDiveSection() {
   const data = deepDiveData as DeepDiveData;
 
   return (
-    <section className="py-12 md:py-16 px-6 bg-white">
+    <motion.section
+      className="py-12 md:py-16 px-6 bg-white"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      variants={containerVariants}
+    >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-10">
-          <p className="text-brand/90 text-sm font-semibold tracking-widest mb-3">
+        <motion.div className="text-center mb-10" variants={fadeInUp}>
+          <div className="inline-block px-4 py-1.5 rounded-lg bg-white border-2 border-brand/60 text-[#2a2520] text-xs font-semibold tracking-widest mb-6">
             {data.label}
-          </p>
+          </div>
           <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2a2520]">
             {data.title}
           </h2>
-        </div>
+        </motion.div>
 
         {/* Feature cards */}
         <div className="space-y-6">
           {data.items.map((item) => (
-            <article
+            <motion.article
               key={item.id}
+              variants={fadeInUp}
               className={`flex flex-col md:flex-row gap-0 overflow-hidden rounded-2xl bg-[#f5f3f0] ${
                 item.imageLeft ? "md:flex-row" : "md:flex-row-reverse"
               }`}
@@ -86,20 +105,20 @@ export default function DeepDiveSection() {
                   </p>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <motion.div className="text-center mt-12" variants={fadeInUp}>
           <a
             href={data.cta.url}
             className="inline-flex items-center justify-center px-10 py-4 rounded-lg bg-brand text-white font-semibold text-lg hover:bg-[#9a0e14] transition-colors"
           >
             {data.cta.text}
           </a>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,5 +1,18 @@
+import { motion } from "framer-motion";
 import heroData from "../data/hero.json";
 import bannerBg from "../assets/banner-bg.jpg";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+const containerVariants = {
+  animate: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
 
 interface HeroData {
   tag: { text: string; highlight: string };
@@ -31,51 +44,54 @@ export default function Hero() {
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-3xl mx-auto px-6 py-24 text-center">
+      <motion.div
+        className="relative z-10 w-full max-w-3xl mx-auto px-6 py-24 text-center"
+        variants={containerVariants}
+        initial="initial"
+        animate="animate"
+      >
         {/* Tag */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-brand/40 mb-8">
-          <span className="w-2 h-2 rounded-full bg-brand" />
-          <span className="text-sm font-medium text-white tracking-wide">
-            {data.tag.text}
-          </span>
-        </div>
+        <motion.div
+          className="inline-block px-4 py-1.5 rounded-lg bg-white border-2 border-brand/60 text-[#2a2520] text-sm font-semibold tracking-widest mb-8"
+          variants={fadeInUp}
+        >
+          {data.tag.text}
+        </motion.div>
 
         {/* Headline */}
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-4 text-white">
-          <span
-            style={{
-              textShadow:
-                "0 0 1px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6)",
-            }}
-          >
-            {data.headline.line1}
-          </span>
+        <motion.h1
+          className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight mb-4 text-white"
+          variants={fadeInUp}
+        >
+          {data.headline.line1}
           <br />
-          <span
-            style={{
-              textShadow:
-                "0 0 1px rgba(0,0,0,0.9), 0 0 3px rgba(0,0,0,0.8), 0 2px 8px rgba(0,0,0,0.6)",
-            }}
-          >
-            {data.headline.line2}
-          </span>
-        </h1>
+          {data.headline.line2}
+        </motion.h1>
 
         {/* Subheadline */}
-        <p className="text-lg md:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-6">
+        <motion.p
+          className="text-lg md:text-xl text-slate-200 font-light max-w-2xl mx-auto mb-6"
+          variants={fadeInUp}
+        >
           {data.subheadline}
-        </p>
+        </motion.p>
 
         {/* Description */}
-        <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+        <motion.p
+          className="text-slate-400 text-sm md:text-base max-w-xl mx-auto mb-10 leading-relaxed"
+          variants={fadeInUp}
+        >
           {data.description}
-        </p>
+        </motion.p>
 
         {/* Event details */}
-        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-slate-400 text-sm mb-10">
+        <motion.div
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-white text-sm mb-10 px-6 py-4 rounded-xl bg-black/60 backdrop-blur-sm"
+          variants={fadeInUp}
+        >
           <span className="flex items-center gap-2">
             <svg
-              className="w-4 h-4 text-brand/80"
+              className="w-5 h-5 text-white flex-shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -91,7 +107,7 @@ export default function Hero() {
           </span>
           <span className="flex items-center gap-2">
             <svg
-              className="w-4 h-4 text-brand/80"
+              className="w-5 h-5 text-white flex-shrink-0"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -105,32 +121,39 @@ export default function Hero() {
             </svg>
             {data.event.time}
           </span>
-        </div>
+        </motion.div>
 
         {/* CTA Button */}
-        <a
-          href={data.cta.url}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-brand text-white font-semibold text-lg shadow-lg shadow-brand/30 hover:bg-[#9a0e14] transition-all duration-200 hover:scale-105"
-        >
-          {data.cta.text}
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <motion.div variants={fadeInUp} className="inline-block">
+          <a
+            href={data.cta.url}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-brand text-white font-semibold text-lg shadow-lg shadow-brand/30 hover:bg-[#9a0e14] transition-colors duration-200 hover:scale-105"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </a>
+            {data.cta.text}
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+        </motion.div>
 
         {/* Footer */}
-        <p className="mt-12 text-slate-500 text-sm">{data.footer}</p>
-      </div>
+        <motion.p
+          className="mt-12 text-slate-500 text-sm"
+          variants={fadeInUp}
+        >
+          {data.footer}
+        </motion.p>
+      </motion.div>
     </section>
   );
 }

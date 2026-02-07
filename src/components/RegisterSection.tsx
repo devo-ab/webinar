@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import registerData from "../data/register.json";
 
 interface RegisterData {
@@ -44,17 +45,26 @@ export default function RegisterSection() {
   };
 
   return (
-    <section
+    <motion.section
       id="register"
       className="py-12 md:py-16 px-6 bg-white"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
     >
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left column - Webinar details */}
-          <div>
-            <p className="text-brand text-sm font-semibold tracking-widest mb-4">
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <div className="inline-block px-4 py-1.5 rounded-lg bg-white border-2 border-brand/60 text-[#2a2520] text-xs font-semibold tracking-widest mb-6">
               {data.headline}
-            </p>
+            </div>
             <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#2a2520] leading-tight mb-6">
               {data.title.line1}
               <br />
@@ -94,10 +104,16 @@ export default function RegisterSection() {
                 <div className="text-sm text-[#5a5550]">{data.event.time}</div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right column - Registration form */}
-          <div className="bg-[#f5f3f0] rounded-2xl p-8 shadow-sm">
+          <motion.div
+            className="bg-[#f5f3f0] rounded-2xl p-8 shadow-sm"
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <h3 className="font-serif text-2xl font-bold text-[#2a2520] text-center mb-8">
               {data.form.title}
             </h3>
@@ -229,9 +245,9 @@ export default function RegisterSection() {
                 {data.form.securityNote}
               </p>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
