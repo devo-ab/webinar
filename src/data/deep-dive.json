@@ -1,0 +1,54 @@
+{
+  "label": "DEEP DIVE",
+  "title": "The Full Breakdown",
+  "items": [
+    {
+      "id": "01",
+      "title": "Squeeze more profit from finished work",
+      "description": "Most filmmakers leave money on the table the moment they deliver the final video. We show you how to automatically upsell raw footage and digital archives so past projects become a permanent income stream.",
+      "image": "",
+      "stat": {
+        "value": "30-50%",
+        "label": "More profit per project"
+      },
+      "imageLeft": true
+    },
+    {
+      "id": "02",
+      "title": "Turn every project into a referral machine",
+      "description": "DVDs get stuck in a drawer, but a premium digital experience gets shared with the world. Turn your current clients into your best marketers and bring high-value leads right to your door.",
+      "image": "",
+      "stat": {
+        "value": "10×",
+        "label": "More shares vs. physical media"
+      },
+      "imageLeft": false
+    },
+    {
+      "id": "03",
+      "title": "Give clients a Netflix-style experience",
+      "description": "Stop sending generic file links that look cheap. Deliver a stunning, ad-free stage that puts your brand front and center. Stand out and prove you are worth every penny.",
+      "image": "",
+      "stat": {
+        "value": "100%",
+        "label": "Branded & ad-free"
+      },
+      "imageLeft": true
+    },
+    {
+      "id": "04",
+      "title": "Stop the delivery grind — launch in seconds",
+      "description": "You shouldn't spend hours fighting with technology to deliver your work. Use simple templates to launch professional branded experiences in seconds.",
+      "image": "",
+      "stat": {
+        "value": "<60s",
+        "label": "From upload to live"
+      },
+      "imageLeft": false
+    }
+  ],
+  "cta": {
+    "text": "Reserve your spot now",
+    "url": "#register"
+  }
+}

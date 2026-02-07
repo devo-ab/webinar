@@ -1,0 +1,38 @@
+{
+  "label": "WHAT YOU WILL LEARN",
+  "title": {
+    "line1": "Four Pillars of the",
+    "line2": "Forever Ticket Framework"
+  },
+  "subtitle": "The exact delivery framework that turns one-night shows into lifetime revenue streams. No theory — just workflows working in 2026.",
+  "pillars": [
+    {
+      "id": "01",
+      "title": "The Silent Salesman",
+      "tagline": "Squeeze extra profit from work you already finished",
+      "description": "Automatically upsell add-ons like raw footage and digital archives so your past projects become a permanent income stream — without filming anything new.",
+      "icon": "dollar"
+    },
+    {
+      "id": "02",
+      "title": "The Referral Machine",
+      "tagline": "Effortless sharing brings high-value clients to your door",
+      "description": "Eliminate physical media friction so parents share with extended family — turning your current clients into your best marketers.",
+      "icon": "share"
+    },
+    {
+      "id": "03",
+      "title": "The Premium Standard",
+      "tagline": "A Netflix-style experience that justifies higher rates",
+      "description": "Stop sending generic file links. Deliver a stunning, ad-free stage that puts your brand front and center and proves you're worth every penny.",
+      "icon": "monitor"
+    },
+    {
+      "id": "04",
+      "title": "The Speed Advantage",
+      "tagline": "Stop the delivery grind, launch in seconds",
+      "description": "Use simple templates to launch professional branded experiences instantly. Less file management, more creating.",
+      "icon": "lightning"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --color-brand: #B91118;
+  --color-brand-light: #e86a6f;
+  --color-brand-lighter: #f5a5a8;
+}

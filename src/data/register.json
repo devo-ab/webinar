@@ -1,0 +1,30 @@
+{
+  "headline": "FREE LIVE WEBINAR",
+  "title": {
+    "line1": "Reserve Your",
+    "line2": "Free Seat"
+  },
+  "description": "Spots are limited for this live session with the MediaZilla CEO. Get the exact delivery framework the top 1% of dance filmmakers use to generate lifetime revenue.",
+  "benefits": [
+    "Live Q&A with the MediaZilla CEO",
+    "Real workflows — no theory",
+    "Replay access for all registrants"
+  ],
+  "event": {
+    "date": "February 11th, 2026",
+    "time": "UK Morning Time (GMT)"
+  },
+  "form": {
+    "title": "Register Now",
+    "fields": {
+      "firstName": { "label": "First Name", "placeholder": "John", "required": true },
+      "lastName": { "label": "Last Name", "placeholder": "Doe", "required": true },
+      "email": { "label": "Email Address", "placeholder": "john@example.com", "required": true },
+      "business": { "label": "Business Name", "placeholder": "Your studio or company", "required": false },
+      "role": { "label": "I am a...", "placeholder": "Select your role", "required": true }
+    },
+    "roles": ["Dance School Owner", "Filmmaker", "Videographer", "Studio Manager", "Other"],
+    "submitText": "Reserve My Free Seat",
+    "securityNote": "Your information is secure and will never be shared."
+  }
+}
